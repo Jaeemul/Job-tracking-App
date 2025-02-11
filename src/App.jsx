@@ -21,11 +21,14 @@ export default function SearchApp() {
     }
   };
 
-  // Function to delete an entry
+  // Function to delete an entry with confirmation
   const deleteEntry = (name) => {
-    const updatedData = data.filter((item) => item !== name);
-    setData(updatedData);
-    localStorage.setItem("entries", JSON.stringify(updatedData)); // Update localStorage
+    const confirmDelete = window.confirm(`Are you sure you want to delete "${name}"?`);
+    if (confirmDelete) {
+      const updatedData = data.filter((item) => item !== name);
+      setData(updatedData);
+      localStorage.setItem("entries", JSON.stringify(updatedData)); // Update localStorage
+    }
   };
 
   // Filter data based on search input
